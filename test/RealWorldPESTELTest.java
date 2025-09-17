@@ -122,19 +122,19 @@ public class RealWorldPESTELTest {
         
         // Alternative futures outcome
         System.out.println("\n🔮 ALTERNATIVE FUTURES OUTCOME:");
-        RealWorldPESTELEngine.AlternativeFutureManager futureManager = engine.getFutureManager();
-        List<RealWorldPESTELEngine.FutureScenario> scenarios = futureManager.getAllScenarios();
+        EnhancedFutureScenarioManager futureManager = engine.getEnhancedFutureManager();
+        List<EnhancedFutureScenarioManager.FutureScenario> scenarios = futureManager.getAllScenarios();
         
         scenarios.sort((s1, s2) -> Double.compare(s2.getProbability(), s1.getProbability()));
         
         for (int i = 0; i < scenarios.size(); i++) {
-            RealWorldPESTELEngine.FutureScenario scenario = scenarios.get(i);
+            EnhancedFutureScenarioManager.FutureScenario scenario = scenarios.get(i);
             String indicator = i == 0 ? "🥇" : i == 1 ? "🥈" : i == 2 ? "🥉" : "📊";
             System.out.println(String.format("  %s %s: %.1f%% probability", 
                 indicator, scenario.getName(), scenario.getProbability() * 100));
         }
         
-        RealWorldPESTELEngine.FutureScenario dominant = futureManager.getCurrentDominantScenario();
+        EnhancedFutureScenarioManager.FutureScenario dominant = futureManager.getCurrentDominantScenario();
         System.out.println(String.format("\n🎯 DOMINANT FUTURE: %s", dominant.getName()));
         System.out.println(String.format("   Probability: %.1f%%", dominant.getProbability() * 100));
         System.out.println(String.format("   Description: %s", dominant.getDescription()));

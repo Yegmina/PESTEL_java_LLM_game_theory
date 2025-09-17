@@ -442,6 +442,70 @@ public class LocalQwenAIService {
         return "Strategic Entity";
     }
     
+    /**
+     * Analyze decision for PESTEL impact (interface method for AIEnhancedPESTELEngine)
+     */
+    public String analyzeDecision(String prompt, String requestType) {
+        if (!modelAvailable) {
+            return generateIntelligentFallback(null, requestType);
+        }
+        
+        try {
+            // Create temporary Python script
+            File tempScript = createTempPythonScript(prompt);
+            
+            // Run Python script with local model
+            ProcessBuilder pb = new ProcessBuilder(pythonExecutable, tempScript.getAbsolutePath());
+            pb.redirectErrorStream(true);
+            
+            Process process = pb.start();
+            
+            // Read output
+            StringBuilder output = new StringBuilder();
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    output.append(line).append("\n");
+                }
+            }
+            
+            // Wait for completion with timeout
+            boolean finished = process.waitFor(30, TimeUnit.SECONDS);
+            if (!finished) {
+                process.destroyForcibly();
+                throw new RuntimeException("Model inference timeout");
+            }
+            
+            // Clean up
+            tempScript.delete();
+            
+            String result = output.toString().trim();
+            if (result.contains("FALLBACK_MODE") || result.isEmpty()) {
+                return generateIntelligentFallback(null, requestType);
+            }
+            
+            return result;
+            
+        } catch (Exception e) {
+            simu.framework.Trace.out(simu.framework.Trace.Level.WAR, 
+                "Local model execution failed: " + e.getMessage());
+            return generateIntelligentFallback(null, requestType);
+        }
+    }
+    
+    /**
+     * Generate decision prompt for AI analysis
+     */
+    public String generateDecisionPrompt(String agentId, int currentDay, String context, 
+                                       String pestelState, String recentActions) {
+        return String.format(
+            "You are %s on day %d. Context: %s\nPESTEL State: %s\nRecent Actions: %s\n\n" +
+            "Should you take action today? If yes, provide specific strategic decision. " +
+            "If no, respond 'NO_ACTION'. Format: ACTION_TYPE|DESCRIPTION|CONFIDENCE(0.0-1.0)",
+            agentId, currentDay, context, pestelState, recentActions
+        );
+    }
+
     public boolean isModelAvailable() {
         return modelAvailable;
     }

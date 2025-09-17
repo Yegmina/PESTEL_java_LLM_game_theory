@@ -86,7 +86,8 @@ class QwenServer:
                 )
             
             # Decode response
-            output_ids = generated_ids[0][len(model_inputs.input_ids[0]):].tolist()
+            input_length = model_inputs['input_ids'].shape[1]
+            output_ids = generated_ids[0][input_length:].tolist()
             response = self.tokenizer.decode(output_ids, skip_special_tokens=True)
             
             return response.strip()

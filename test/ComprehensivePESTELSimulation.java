@@ -3,6 +3,8 @@ package test;
 import simu.framework.Trace;
 import simu.framework.Trace.Level;
 import simu.model.*;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Comprehensive PESTEL Simulation with all top companies, countries, and research centers

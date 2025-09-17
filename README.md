@@ -39,7 +39,7 @@
 
 ### 🧠 **Local AI Integration - CONFIRMED WORKING**
 - **🖥️ Runs Locally on Your Laptop** - Complete privacy and control
-- **🤖 Qwen3-Next-80B-A3B-Thinking Model** - Advanced reasoning and strategic thinking
+- **🤖 Qwen2.5-1.5B-Instruct Model** - Fast local AI (CONFIRMED WORKING)
 - **⚡ Intelligent Fallback** - Works perfectly without AI using advanced logic
 - **🔒 Zero External Dependencies** - All processing happens on your machine
 - **✅ VERIFIED**: AI generates unique, contextual decisions for all 190 entities
@@ -101,14 +101,14 @@
 ```bash
 # Step 1: Setup local Qwen model server (one-time)
 pip install flask transformers accelerate torch
-python qwen_server.py --model Qwen/Qwen2.5-7B-Instruct --port 8000
+py qwen_server.py --model Qwen/Qwen2.5-1.5B-Instruct --port 8000
 
 # Step 2: In another terminal, compile and run
 javac -cp . simu/framework/*.java simu/model/*.java test/*.java
 java -cp . test.UltraComprehensivePESTELTest
 ```
 
-### **Option 2: Advanced Fallback (No AI Setup)** ⚡
+### **Option 2: Advanced Fallback (No AI Setup, just for testing)** ⚡
 ```bash
 # Compile and run immediately
 javac -cp . simu/framework/*.java simu/model/*.java test/*.java
@@ -123,7 +123,8 @@ java -cp . test.FixedRealWorldTest
 ## 🎯 **Local AI Model Setup**
 
 ### **System Requirements:**
-- **For Qwen2.5-7B**: 8GB+ RAM (recommended)
+- **For Qwen2.5-1.5B**: 4GB+ RAM (recommended - CONFIRMED WORKING)
+- **For Qwen2.5-7B**: 8GB+ RAM 
 - **For Qwen3-Next-80B**: 24GB+ GPU memory or 64GB+ RAM
 - **For Fallback**: Just Java (no AI dependencies)
 
@@ -133,9 +134,9 @@ java -cp . test.FixedRealWorldTest
 pip install flask transformers accelerate torch
 
 # Start the AI server (choose your model)
-python qwen_server.py --model Qwen/Qwen2.5-7B-Instruct --port 8000
-# OR for more power:
-python qwen_server.py --model Qwen/Qwen3-Next-80B-A3B-Thinking --port 8000
+py qwen_server.py --model Qwen/Qwen2.5-1.5B-Instruct --port 8000
+# OR for more power (requires more RAM):
+py qwen_server.py --model Qwen/Qwen2.5-7B-Instruct --port 8000
 
 # Test the server
 curl http://localhost:8000/health

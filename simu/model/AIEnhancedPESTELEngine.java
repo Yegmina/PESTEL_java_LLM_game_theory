@@ -15,7 +15,7 @@ public class AIEnhancedPESTELEngine extends Engine {
     private List<RealWorldCountry> countries;
     private List<RealWorldResearcher> researchers;
     private List<String> countryUnionNames;
-    private LocalQwenAIService aiService;
+    private SimpleLocalAIService aiService;
     private EnhancedFutureScenarioManager enhancedFutureManager;
     private List<AgentAction> recentActions;
     private List<PESTELChange> recentChanges;
@@ -73,9 +73,14 @@ public class AIEnhancedPESTELEngine extends Engine {
     
     private void initializeAIService() {
         try {
-            this.aiService = new LocalQwenAIService();
-            this.aiEnabled = true;
-            Trace.out(Trace.Level.INFO, "✅ Local Qwen3-Next-80B-A3B-Thinking model initialized successfully");
+            this.aiService = new SimpleLocalAIService();
+            this.aiEnabled = aiService.isModelAvailable();
+            if (aiEnabled) {
+                Trace.out(Trace.Level.INFO, "✅ Local Qwen server connected successfully");
+            } else {
+                Trace.out(Trace.Level.WAR, "⚠️ Local Qwen server not running - using advanced fallback logic");
+                Trace.out(Trace.Level.INFO, "💡 To enable AI: python qwen_server.py --model Qwen/Qwen2.5-7B-Instruct");
+            }
         } catch (Exception e) {
             this.aiEnabled = false;
             Trace.out(Trace.Level.WAR, "⚠️ AI service unavailable, using advanced fallback logic: " + e.getMessage());

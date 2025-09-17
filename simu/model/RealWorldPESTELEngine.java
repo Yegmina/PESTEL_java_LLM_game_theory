@@ -245,17 +245,17 @@ public class RealWorldPESTELEngine extends Engine {
     
     private void initializeRealWorldEntities() {
         // Create comprehensive real companies (Top 50)
-        for (ComprehensiveRealWorldData.CompanyData companyData : ComprehensiveRealWorldData.TOP_COMPANIES) {
+        for (UltraComprehensiveRealWorldData.CompanyData companyData : UltraComprehensiveRealWorldData.TOP_COMPANIES) {
             companies.add(new RealWorldCompany(companyData));
         }
         
         // Create comprehensive real countries (Top 30)
-        for (ComprehensiveRealWorldData.CountryData countryData : ComprehensiveRealWorldData.TOP_COUNTRIES) {
+        for (UltraComprehensiveRealWorldData.CountryData countryData : UltraComprehensiveRealWorldData.TOP_COUNTRIES) {
             countries.add(new RealWorldCountry(countryData));
         }
         
         // Create comprehensive research institutions (Top 25)
-        for (ComprehensiveRealWorldData.ResearchData researchData : ComprehensiveRealWorldData.TOP_RESEARCH_CENTERS) {
+        for (UltraComprehensiveRealWorldData.ResearchData researchData : UltraComprehensiveRealWorldData.TOP_RESEARCH_CENTERS) {
             researchers.add(new RealWorldResearcher(researchData));
         }
         
