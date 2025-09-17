@@ -36,9 +36,12 @@ public class EventList {
 	/**
 	 * Check the time of the next event. This does not retrieve the event from the list.
 	 *
-	 * @return Time of the event
+	 * @return Time of the event, or Double.MAX_VALUE if list is empty
 	 */
 	public double getNextEventTime(){
+		if (eventlist.isEmpty()) {
+			return Double.MAX_VALUE;
+		}
 		return eventlist.peek().getTime();
 	}
 }

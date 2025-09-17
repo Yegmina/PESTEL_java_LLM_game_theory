@@ -26,7 +26,7 @@ public abstract class PESTELAgent {
         this.decisionCount = 0;
         this.recentActions = new ArrayList<>();
         
-        initializeLocalPESTEL();
+        // Note: initializeLocalPESTEL() should be called by subclasses after their fields are set
     }
     
     /**

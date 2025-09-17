@@ -127,8 +127,8 @@ public class PESTELSimulationEngine extends Engine {
         cleanupOldActions();
         
         // Schedule next day if simulation not complete
-        currentDay++;
-        if (currentDay <= simulationDays) {
+        if (currentDay < simulationDays) {
+            currentDay++;
             eventList.add(new Event(ForecastingEventType.TIME_STEP_ADVANCE, currentDay));
         }
     }
