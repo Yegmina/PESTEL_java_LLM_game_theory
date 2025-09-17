@@ -28,9 +28,9 @@ public class FixedRealWorldTest {
         System.out.println();
         
         try {
-            // Create simulation with shorter duration
-            RealWorldPESTELEngine engine = new RealWorldPESTELEngine(10);
-            engine.setSimulationTime(10.0);
+            // Create AI-enhanced simulation with shorter duration
+            AIEnhancedPESTELEngine engine = new AIEnhancedPESTELEngine(10);
+            engine.setSimulationTime(1.0); //1day
             
             System.out.println("Configuration:");
             System.out.println("  - 10 Global Companies (Walmart, Amazon, Apple, etc.)");
@@ -56,7 +56,7 @@ public class FixedRealWorldTest {
         }
     }
     
-    private static void displayKeyResults(RealWorldPESTELEngine engine) {
+    private static void displayKeyResults(AIEnhancedPESTELEngine engine) {
         System.out.println("\n=== KEY SIMULATION RESULTS ===");
         
         // Alternative futures outcome
