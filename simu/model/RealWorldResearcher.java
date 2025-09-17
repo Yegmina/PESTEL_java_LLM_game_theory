@@ -6,13 +6,13 @@ import java.util.List;
  * Real-world research institution with actual research data and academic behavior
  */
 public class RealWorldResearcher extends PESTELAgent {
-    private ComprehensiveRealWorldData.ResearchData researchData;
+    private UltraComprehensiveRealWorldData.ResearchData researchData;
     private double researchImpact;
     private double globalRanking;
     private double fundingLevel;
     private double collaborationNetwork;
     
-    public RealWorldResearcher(ComprehensiveRealWorldData.ResearchData researchData) {
+    public RealWorldResearcher(UltraComprehensiveRealWorldData.ResearchData researchData) {
         super(researchData.name, AgentType.RESEARCHER);
         this.researchData = researchData;
         this.researchImpact = calculateResearchImpact();
@@ -233,7 +233,7 @@ public class RealWorldResearcher extends PESTELAgent {
     }
     
     // Getters
-    public ComprehensiveRealWorldData.ResearchData getResearchData() {
+    public UltraComprehensiveRealWorldData.ResearchData getResearchData() {
         return researchData;
     }
     

@@ -6,12 +6,12 @@ import java.util.List;
  * Real-world company implementation with actual company data and behavior
  */
 public class RealWorldCompany extends PESTELAgent {
-    private ComprehensiveRealWorldData.CompanyData companyData;
+    private UltraComprehensiveRealWorldData.CompanyData companyData;
     private double marketInfluence;
     private double innovationIndex;
     private double sustainabilityScore;
     
-    public RealWorldCompany(ComprehensiveRealWorldData.CompanyData companyData) {
+    public RealWorldCompany(UltraComprehensiveRealWorldData.CompanyData companyData) {
         super(companyData.name, AgentType.COMPANY);
         this.companyData = companyData;
         this.marketInfluence = calculateMarketInfluence();
@@ -225,7 +225,7 @@ public class RealWorldCompany extends PESTELAgent {
     }
     
     // Getters
-    public ComprehensiveRealWorldData.CompanyData getCompanyData() {
+    public UltraComprehensiveRealWorldData.CompanyData getCompanyData() {
         return companyData;
     }
     

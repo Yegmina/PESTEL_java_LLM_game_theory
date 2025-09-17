@@ -7,14 +7,14 @@ import java.util.ArrayList;
  * Real-world country implementation with actual country data and geopolitical behavior
  */
 public class RealWorldCountry extends PESTELAgent {
-    private ComprehensiveRealWorldData.CountryData countryData;
+    private UltraComprehensiveRealWorldData.CountryData countryData;
     private double geopoliticalInfluence;
     private double economicPower;
     private double militaryStrength;
     private List<String> allianceMembers;
     private ComprehensiveRealWorldData.CountryUnion countryUnion;
     
-    public RealWorldCountry(ComprehensiveRealWorldData.CountryData countryData) {
+    public RealWorldCountry(UltraComprehensiveRealWorldData.CountryData countryData) {
         super(countryData.name, AgentType.COUNTRY);
         this.countryData = countryData;
         this.geopoliticalInfluence = calculateGeopoliticalInfluence();
@@ -243,7 +243,7 @@ public class RealWorldCountry extends PESTELAgent {
     }
     
     // Getters
-    public ComprehensiveRealWorldData.CountryData getCountryData() {
+    public UltraComprehensiveRealWorldData.CountryData getCountryData() {
         return countryData;
     }
     
