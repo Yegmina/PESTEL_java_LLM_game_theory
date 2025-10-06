@@ -20,7 +20,7 @@ public class LocalOllamaAIService {
     private final HttpClient httpClient;
     
     public LocalOllamaAIService() {
-        this("http://localhost:11434", "gemma3:4b"); // Default model
+        this("http://localhost:11434", "deepseek-r1:7b"); // Default model
     }
     
     public LocalOllamaAIService(String ollamaUrl, String modelName) {
