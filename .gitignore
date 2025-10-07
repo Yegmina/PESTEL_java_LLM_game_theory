@@ -43,6 +43,7 @@ Thumbs.db
 *.env
 .env
 api_keys.txt
+config.*
 
 # Temporary files
 *.tmp

@@ -1,0 +1,11 @@
+# Make sure you're in the DataBase directory
+cd ~/PESTEL_java_LLM_game_theory/DataBase
+
+# Create output directory
+mkdir -p out
+
+# Compile all Java files
+javac -cp "lib/*:src" -d out src/entity/*.java src/datasource/*.java src/dao/*.java src/test/*.java
+
+# Run the test
+java -cp "out:lib/*" test.TestDatabase

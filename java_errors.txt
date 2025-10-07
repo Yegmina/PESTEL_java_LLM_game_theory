@@ -1,0 +1,317 @@
+simu/model/AIAnalysisResult.java:15: error: cannot find symbol
+    private GlobalState globalState;
+            ^
+  symbol:   class GlobalState
+  location: class AIAnalysisResult
+simu/model/AIAnalysisResult.java:28: error: cannot find symbol
+                           String trendAnalysis, GlobalState globalState) {
+                                                 ^
+  symbol:   class GlobalState
+  location: class AIAnalysisResult
+simu/model/AIAnalysisResult.java:119: error: cannot find symbol
+    public GlobalState getGlobalState() {
+           ^
+  symbol:   class GlobalState
+  location: class AIAnalysisResult
+simu/model/AIPredictionResult.java:16: error: package ScenarioGenerator does not exist
+    private List<ScenarioGenerator.Scenario> scenarios;
+                                  ^
+simu/model/AIPredictionResult.java:29: error: package ScenarioGenerator does not exist
+                             String timelinePredictions, List<ScenarioGenerator.Scenario> scenarios) {
+                                                                               ^
+simu/model/AIPredictionResult.java:120: error: package ScenarioGenerator does not exist
+    public List<ScenarioGenerator.Scenario> getScenarios() {
+                                 ^
+test/GlobalWarPredictionTest.java:202: error: cannot find symbol
+    private static List<ExternalInfluence> createConflictInfluences() {
+                        ^
+  symbol:   class ExternalInfluence
+  location: class GlobalWarPredictionTest
+test/GlobalWarPredictionTest.java:218: error: cannot find symbol
+    private static List<ExternalInfluence> createResourceConflictInfluences() {
+                        ^
+  symbol:   class ExternalInfluence
+  location: class GlobalWarPredictionTest
+test/GlobalWarPredictionTest.java:232: error: cannot find symbol
+    private static List<ExternalInfluence> createTechnologyConflictInfluences() {
+                        ^
+  symbol:   class ExternalInfluence
+  location: class GlobalWarPredictionTest
+test/GlobalWarPredictionTest.java:246: error: cannot find symbol
+    private static List<ExternalInfluence> createRecoveryInfluences() {
+                        ^
+  symbol:   class ExternalInfluence
+  location: class GlobalWarPredictionTest
+test/GlobalWarPredictionTest.java:261: error: cannot find symbol
+    private static void analyzeConflictResults(ForecastingEngine engine, String scenarioName, long executionTime) {
+                                               ^
+  symbol:   class ForecastingEngine
+  location: class GlobalWarPredictionTest
+test/GlobalWarPredictionTest.java:336: error: cannot find symbol
+    private static double calculateConflictRisk(GlobalState globalState, List<ScenarioGenerator.Scenario> scenarios) {
+                                                ^
+  symbol:   class GlobalState
+  location: class GlobalWarPredictionTest
+test/GlobalWarPredictionTest.java:336: error: package ScenarioGenerator does not exist
+    private static double calculateConflictRisk(GlobalState globalState, List<ScenarioGenerator.Scenario> scenarios) {
+                                                                                               ^
+test/GlobalWarPredictionTest.java:355: error: cannot find symbol
+    private static void generateConflictRecommendations(GlobalState globalState, double conflictRisk, String scenarioName) {
+                                                        ^
+  symbol:   class GlobalState
+  location: class GlobalWarPredictionTest
+simu/model/AIPredictionResult.java:179: error: package ScenarioGenerator does not exist
+        ScenarioGenerator.Scenario mostLikely = scenarios.stream()
+                         ^
+test/GlobalWarPredictionTest.java:46: error: cannot find symbol
+        ForecastingEngine engine = new ForecastingEngine(4, 6, 2); // More countries, fewer researchers
+        ^
+  symbol:   class ForecastingEngine
+  location: class GlobalWarPredictionTest
+test/GlobalWarPredictionTest.java:46: error: cannot find symbol
+        ForecastingEngine engine = new ForecastingEngine(4, 6, 2); // More countries, fewer researchers
+                                       ^
+  symbol:   class ForecastingEngine
+  location: class GlobalWarPredictionTest
+test/GlobalWarPredictionTest.java:50: error: cannot find symbol
+        GlobalState globalState = engine.getGlobalState();
+        ^
+  symbol:   class GlobalState
+  location: class GlobalWarPredictionTest
+test/GlobalWarPredictionTest.java:65: error: cannot find symbol
+        List<ExternalInfluence> conflictInfluences = createConflictInfluences();
+             ^
+  symbol:   class ExternalInfluence
+  location: class GlobalWarPredictionTest
+test/GlobalWarPredictionTest.java:66: error: cannot find symbol
+        for (ExternalInfluence influence : conflictInfluences) {
+             ^
+  symbol:   class ExternalInfluence
+  location: class GlobalWarPredictionTest
+test/GlobalWarPredictionTest.java:88: error: cannot find symbol
+        ForecastingEngine engine = new ForecastingEngine(6, 4, 3);
+        ^
+  symbol:   class ForecastingEngine
+  location: class GlobalWarPredictionTest
+test/GlobalWarPredictionTest.java:88: error: cannot find symbol
+        ForecastingEngine engine = new ForecastingEngine(6, 4, 3);
+                                       ^
+  symbol:   class ForecastingEngine
+  location: class GlobalWarPredictionTest
+test/GlobalWarPredictionTest.java:91: error: cannot find symbol
+        GlobalState globalState = engine.getGlobalState();
+        ^
+  symbol:   class GlobalState
+  location: class GlobalWarPredictionTest
+test/GlobalWarPredictionTest.java:105: error: cannot find symbol
+        List<ExternalInfluence> resourceConflicts = createResourceConflictInfluences();
+             ^
+  symbol:   class ExternalInfluence
+  location: class GlobalWarPredictionTest
+test/GlobalWarPredictionTest.java:106: error: cannot find symbol
+        for (ExternalInfluence influence : resourceConflicts) {
+             ^
+  symbol:   class ExternalInfluence
+  location: class GlobalWarPredictionTest
+test/GlobalWarPredictionTest.java:126: error: cannot find symbol
+        ForecastingEngine engine = new ForecastingEngine(5, 3, 6); // More researchers
+        ^
+  symbol:   class ForecastingEngine
+  location: class GlobalWarPredictionTest
+test/GlobalWarPredictionTest.java:126: error: cannot find symbol
+        ForecastingEngine engine = new ForecastingEngine(5, 3, 6); // More researchers
+                                       ^
+  symbol:   class ForecastingEngine
+  location: class GlobalWarPredictionTest
+test/GlobalWarPredictionTest.java:129: error: cannot find symbol
+        GlobalState globalState = engine.getGlobalState();
+        ^
+  symbol:   class GlobalState
+  location: class GlobalWarPredictionTest
+test/GlobalWarPredictionTest.java:143: error: cannot find symbol
+        List<ExternalInfluence> techConflicts = createTechnologyConflictInfluences();
+             ^
+  symbol:   class ExternalInfluence
+  location: class GlobalWarPredictionTest
+test/GlobalWarPredictionTest.java:144: error: cannot find symbol
+        for (ExternalInfluence influence : techConflicts) {
+             ^
+  symbol:   class ExternalInfluence
+  location: class GlobalWarPredictionTest
+test/GlobalWarPredictionTest.java:164: error: cannot find symbol
+        ForecastingEngine engine = new ForecastingEngine(4, 5, 4);
+        ^
+  symbol:   class ForecastingEngine
+  location: class GlobalWarPredictionTest
+test/GlobalWarPredictionTest.java:164: error: cannot find symbol
+        ForecastingEngine engine = new ForecastingEngine(4, 5, 4);
+                                       ^
+  symbol:   class ForecastingEngine
+  location: class GlobalWarPredictionTest
+test/GlobalWarPredictionTest.java:167: error: cannot find symbol
+        GlobalState globalState = engine.getGlobalState();
+        ^
+  symbol:   class GlobalState
+  location: class GlobalWarPredictionTest
+test/GlobalWarPredictionTest.java:184: error: cannot find symbol
+        List<ExternalInfluence> recoveryInfluences = createRecoveryInfluences();
+             ^
+  symbol:   class ExternalInfluence
+  location: class GlobalWarPredictionTest
+test/GlobalWarPredictionTest.java:185: error: cannot find symbol
+        for (ExternalInfluence influence : recoveryInfluences) {
+             ^
+  symbol:   class ExternalInfluence
+  location: class GlobalWarPredictionTest
+test/GlobalWarPredictionTest.java:203: error: cannot find symbol
+        List<ExternalInfluence> influences = new ArrayList<>();
+             ^
+  symbol:   class ExternalInfluence
+  location: class GlobalWarPredictionTest
+test/GlobalWarPredictionTest.java:206: error: cannot find symbol
+        influences.add(new ExternalInfluence("conflict", 0.3, -0.2, 6.0)); // Major conflict
+                           ^
+  symbol:   class ExternalInfluence
+  location: class GlobalWarPredictionTest
+test/GlobalWarPredictionTest.java:207: error: cannot find symbol
+        influences.add(new ExternalInfluence("economic_shock", 0.2, -0.3, 8.0)); // Economic crisis
+                           ^
+  symbol:   class ExternalInfluence
+  location: class GlobalWarPredictionTest
+test/GlobalWarPredictionTest.java:208: error: cannot find symbol
+        influences.add(new ExternalInfluence("resource_discovery", 0.1, 0.1, 4.0)); // Rare resource discovery
+                           ^
+  symbol:   class ExternalInfluence
+  location: class GlobalWarPredictionTest
+test/GlobalWarPredictionTest.java:209: error: cannot find symbol
+        influences.add(new ExternalInfluence("population_change", 0.15, -0.1, 12.0)); // Population displacement
+                           ^
+  symbol:   class ExternalInfluence
+  location: class GlobalWarPredictionTest
+test/GlobalWarPredictionTest.java:210: error: cannot find symbol
+        influences.add(new ExternalInfluence("natural_disaster", 0.1, -0.15, 3.0)); // War-related disasters
+                           ^
+  symbol:   class ExternalInfluence
+  location: class GlobalWarPredictionTest
+test/GlobalWarPredictionTest.java:219: error: cannot find symbol
+        List<ExternalInfluence> influences = new ArrayList<>();
+             ^
+  symbol:   class ExternalInfluence
+  location: class GlobalWarPredictionTest
+test/GlobalWarPredictionTest.java:221: error: cannot find symbol
+        influences.add(new ExternalInfluence("economic_shock", 0.4, -0.4, 10.0)); // Resource crisis
+                           ^
+  symbol:   class ExternalInfluence
+  location: class GlobalWarPredictionTest
+test/GlobalWarPredictionTest.java:222: error: cannot find symbol
+        influences.add(new ExternalInfluence("conflict", 0.25, -0.15, 8.0)); // Resource wars
+                           ^
+  symbol:   class ExternalInfluence
+  location: class GlobalWarPredictionTest
+test/GlobalWarPredictionTest.java:223: error: cannot find symbol
+        influences.add(new ExternalInfluence("climate_change", 0.2, -0.1, 15.0)); // Climate stress
+                           ^
+  symbol:   class ExternalInfluence
+  location: class GlobalWarPredictionTest
+test/GlobalWarPredictionTest.java:224: error: cannot find symbol
+        influences.add(new ExternalInfluence("population_change", 0.3, -0.2, 18.0)); // Mass migration
+                           ^
+  symbol:   class ExternalInfluence
+  location: class GlobalWarPredictionTest
+test/GlobalWarPredictionTest.java:233: error: cannot find symbol
+        List<ExternalInfluence> influences = new ArrayList<>();
+             ^
+  symbol:   class ExternalInfluence
+  location: class GlobalWarPredictionTest
+test/GlobalWarPredictionTest.java:235: error: cannot find symbol
+        influences.add(new ExternalInfluence("technological_breakthrough", 0.2, 0.3, 12.0)); // Tech advances
+                           ^
+  symbol:   class ExternalInfluence
+  location: class GlobalWarPredictionTest
+test/GlobalWarPredictionTest.java:236: error: cannot find symbol
+        influences.add(new ExternalInfluence("conflict", 0.2, -0.1, 6.0)); // Cyber conflicts
+                           ^
+  symbol:   class ExternalInfluence
+  location: class GlobalWarPredictionTest
+test/GlobalWarPredictionTest.java:237: error: cannot find symbol
+        influences.add(new ExternalInfluence("economic_shock", 0.15, -0.2, 8.0)); // Tech market crashes
+                           ^
+  symbol:   class ExternalInfluence
+  location: class GlobalWarPredictionTest
+test/GlobalWarPredictionTest.java:238: error: cannot find symbol
+        influences.add(new ExternalInfluence("pandemic", 0.1, -0.1, 10.0)); // Biotech threats
+                           ^
+  symbol:   class ExternalInfluence
+  location: class GlobalWarPredictionTest
+test/GlobalWarPredictionTest.java:247: error: cannot find symbol
+        List<ExternalInfluence> influences = new ArrayList<>();
+             ^
+  symbol:   class ExternalInfluence
+  location: class GlobalWarPredictionTest
+test/GlobalWarPredictionTest.java:249: error: cannot find symbol
+        influences.add(new ExternalInfluence("economic_shock", 0.1, 0.2, 12.0)); // Economic recovery
+                           ^
+  symbol:   class ExternalInfluence
+  location: class GlobalWarPredictionTest
+test/GlobalWarPredictionTest.java:250: error: cannot find symbol
+        influences.add(new ExternalInfluence("technological_breakthrough", 0.15, 0.2, 15.0)); // Rebuilding tech
+                           ^
+  symbol:   class ExternalInfluence
+  location: class GlobalWarPredictionTest
+test/GlobalWarPredictionTest.java:251: error: cannot find symbol
+        influences.add(new ExternalInfluence("resource_discovery", 0.2, 0.15, 8.0)); // New resources
+                           ^
+  symbol:   class ExternalInfluence
+  location: class GlobalWarPredictionTest
+test/GlobalWarPredictionTest.java:252: error: cannot find symbol
+        influences.add(new ExternalInfluence("population_change", 0.1, 0.1, 20.0)); // Population recovery
+                           ^
+  symbol:   class ExternalInfluence
+  location: class GlobalWarPredictionTest
+test/GlobalWarPredictionTest.java:253: error: cannot find symbol
+        influences.add(new ExternalInfluence("conflict", 0.05, -0.05, 4.0)); // Occasional setbacks
+                           ^
+  symbol:   class ExternalInfluence
+  location: class GlobalWarPredictionTest
+test/GlobalWarPredictionTest.java:264: error: cannot find symbol
+        GlobalState globalState = engine.getGlobalState();
+        ^
+  symbol:   class GlobalState
+  location: class GlobalWarPredictionTest
+test/GlobalWarPredictionTest.java:265: error: cannot find symbol
+        ScenarioGenerator scenarioGen = engine.getScenarioGenerator();
+        ^
+  symbol:   class ScenarioGenerator
+  location: class GlobalWarPredictionTest
+test/GlobalWarPredictionTest.java:286: error: cannot find symbol
+        for (Agent agent : engine.getAgents()) {
+             ^
+  symbol:   class Agent
+  location: class GlobalWarPredictionTest
+test/GlobalWarPredictionTest.java:290: error: cannot find symbol
+            if (agent instanceof CountryAgent) {
+                                 ^
+  symbol:   class CountryAgent
+  location: class GlobalWarPredictionTest
+test/GlobalWarPredictionTest.java:291: error: cannot find symbol
+                CountryAgent country = (CountryAgent) agent;
+                ^
+  symbol:   class CountryAgent
+  location: class GlobalWarPredictionTest
+test/GlobalWarPredictionTest.java:291: error: cannot find symbol
+                CountryAgent country = (CountryAgent) agent;
+                                        ^
+  symbol:   class CountryAgent
+  location: class GlobalWarPredictionTest
+test/GlobalWarPredictionTest.java:308: error: package ScenarioGenerator does not exist
+        List<ScenarioGenerator.Scenario> scenarios = scenarioGen.getAllScenarios();
+                              ^
+test/GlobalWarPredictionTest.java:309: error: package ScenarioGenerator does not exist
+        Map<String, ScenarioGenerator.ScenarioCluster> clusters = scenarioGen.getAllClusters();
+                                     ^
+test/GlobalWarPredictionTest.java:314: error: package ScenarioGenerator does not exist
+        for (ScenarioGenerator.ScenarioCluster cluster : clusters.values()) {
+                              ^
+Note: simu/model/SimpleLocalAIService.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+66 errors
