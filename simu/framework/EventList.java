@@ -44,4 +44,8 @@ public class EventList {
 		}
 		return eventlist.peek().getTime();
 	}
+	
+	public boolean isEmpty() {
+	    return eventlist.isEmpty();
+    }
 }

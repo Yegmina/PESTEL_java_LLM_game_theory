@@ -120,3 +120,5 @@ public class HighDimensionalVector {
         return new double[]{x * 100, y * 100, z * 100}; // Scale to 0-100 range
     }
 }
+
+

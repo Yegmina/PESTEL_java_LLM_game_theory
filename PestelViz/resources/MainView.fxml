@@ -17,9 +17,9 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1400.0" styleClass="root" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.MainViewController">
    <left>
-      <VBox prefHeight="800.0" prefWidth="250.0" spacing="10.0" style="-fx-padding: 10; -fx-background-color: #f4f4f4;">
+      <VBox prefHeight="800.0" prefWidth="250.0" spacing="10.0" style="-fx-padding: 10; -fx-background-color: #313335;">
          <children>
-            <Label text="Simulation Controls">
+            <Label text="Simulation Controls" styleClass="metrics-label">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -30,14 +30,14 @@
                   <Button fx:id="stopButton" mnemonicParsing="false" onAction="#stopSimulation" text="Stop" />
                </children>
             </HBox>
-            <Label text="Simulation Speed" />
+            <Label text="Simulation Speed" styleClass="metrics-label" />
             <Slider fx:id="speedSlider" max="10.0" min="1.0" value="5.0" />
-            <Label text="LLM Response Mode" />
+            <Label text="LLM Response Mode" styleClass="metrics-label" />
             <HBox spacing="10.0">
                 <Button fx:id="dbButton" onAction="#setDbMode" text="DB Responses" />
                 <Button fx:id="randomButton" onAction="#setRandomMode" text="Random Responses" />
             </HBox>
-            <Label text="Recent Events">
+            <Label text="Recent Events" styleClass="metrics-label">
                <font>
                   <Font size="14.0" />
                </font>
@@ -49,28 +49,28 @@
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="3D Vector Evolution Visualization">
+            <Label text="3D Vector Evolution Visualization" styleClass="metrics-label">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
             <HBox spacing="10.0" alignment="CENTER">
                <children>
-                  <Label text="Start Day:" />
+                  <Label text="Start Day:" styleClass="metrics-label" />
                   <TextField fx:id="startDayField" prefWidth="60.0" text="0" />
-                  <Label text="End Day:" />
+                  <Label text="End Day:" styleClass="metrics-label" />
                   <TextField fx:id="endDayField" prefWidth="60.0" text="30" />
                   <Button fx:id="updateTimeframeButton" onAction="#updateTimeframe" text="Update View" />
                </children>
             </HBox>
-            <Canvas fx:id="vectorCanvas" height="600.0" width="800.0" />
+            <Canvas fx:id="vectorCanvas" height="600.0" width="800.0" styleClass="canvas" />
          </children>
       </VBox>
    </center>
    <right>
       <VBox prefHeight="800.0" prefWidth="350.0" spacing="10.0" style="-fx-padding: 10;">
          <children>
-            <Label text="PESTEL State">
+            <Label text="PESTEL State" styleClass="metrics-label">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>

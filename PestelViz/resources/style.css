@@ -2,21 +2,22 @@
 .root {
     -fx-font-family: "Segoe UI", Arial, sans-serif;
     -fx-background-color: #2b2b2b;
-    -fx-text-fill: #bbbbbb;
+    -fx-text-fill: #ffffff;
 }
 
 /* Labels and Text */
 .label {
-    -fx-text-fill: #bbbbbb;
+    -fx-text-fill: #ffffff;
 }
 
 .titled-pane > .title {
     -fx-background-color: #3c3f41;
-    -fx-text-fill: #bbbbbb;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
 }
 
 .titled-pane > .title > .arrow-button .arrow {
-    -fx-background-color: #bbbbbb;
+    -fx-background-color: #ffffff;
 }
 
 .titled-pane > .content {
@@ -25,8 +26,9 @@
 }
 
 .pestel-factor-label {
-    -fx-text-fill: #a9b7c6;
+    -fx-text-fill: #e0e0e0;
     -fx-padding: 0 0 0 10; /* Add left padding */
+    -fx-font-size: 13px;
 }
 
 .pestel-category-label {
@@ -75,7 +77,7 @@
 
 .list-view .list-cell {
     -fx-background-color: transparent;
-    -fx-text-fill: #bbbbbb;
+    -fx-text-fill: #ffffff;
 }
 
 .list-view .list-cell:filled:hover {
@@ -93,11 +95,12 @@
 }
 
 .axis-label {
-    -fx-text-fill: #bbbbbb;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
 }
 
 .axis {
-    -fx-tick-label-fill: #bbbbbb;
+    -fx-tick-label-fill: #ffffff;
 }
 
 .chart-plot-background {
@@ -106,7 +109,7 @@
 
 .chart-legend {
     -fx-background-color: #3c3f41;
-    -fx-text-fill: #bbbbbb;
+    -fx-text-fill: #ffffff;
 }
 .default-color0.chart-symbol { -fx-background-color: #ff8f00; }
 .default-color1.chart-symbol { -fx-background-color: #00b8d4; }
@@ -116,6 +119,42 @@
 .default-color5.chart-symbol { -fx-background-color: #ff3d00; }
 .default-color6.chart-symbol { -fx-background-color: #2962ff; }
 .default-color7.chart-symbol { -fx-background-color: #c51162; }
+
+/* TextField and Input Controls */
+.text-field {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #000000;
+    -fx-font-size: 13px;
+    -fx-padding: 5;
+}
+
+.text-field:focused {
+    -fx-border-color: #4CAF50;
+    -fx-border-width: 2px;
+}
+
+/* Canvas and 3D Visualization */
+.canvas {
+    -fx-background-color: #1a1a1a;
+}
+
+/* Interaction Hints */
+.interaction-hint {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 12px;
+    -fx-font-style: italic;
+}
+
+/* Metrics Display */
+.metrics-label {
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+}
+
+.metrics-value {
+    -fx-text-fill: #4CAF50;
+    -fx-font-weight: bold;
+}
 
 .tooltip {
     -fx-background-color: #3c3f41;

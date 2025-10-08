@@ -255,4 +255,15 @@ public class PESTELState {
         
         return sb.toString();
     }
+    
+    public Map<String, Map<String, String>> getAllFactors() {
+        Map<String, Map<String, String>> factors = new HashMap<>();
+        factors.put("Political", political);
+        factors.put("Economic", economic);
+        factors.put("Social", social);
+        factors.put("Technological", technological);
+        factors.put("Environmental", environmental);
+        factors.put("Legal", legal);
+        return factors;
+    }
 }

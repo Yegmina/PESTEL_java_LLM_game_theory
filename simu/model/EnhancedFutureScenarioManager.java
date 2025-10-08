@@ -142,13 +142,20 @@ public class EnhancedFutureScenarioManager {
         public String getName() { return name; }
         public String getDescription() { return description; }
         public double getProbability() { return probability; }
-        public void setProbability(double probability) { this.probability = Math.max(0.01, Math.min(0.8, probability)); }
         public double getBaseProbability() { return baseProbability; }
         public String getImplications() { return implications; }
         public List<String> getKeyIndicators() { return new ArrayList<>(keyIndicators); }
         public List<String> getSupportingActions() { return new ArrayList<>(supportingActions); }
         public double getMomentum() { return momentum; }
         public String getDominantSector() { return dominantSector; }
+
+        public void setProbability(double probability) {
+            this.probability = Math.max(0, Math.min(1, probability));
+        }
+
+        public void adjustProbability(double adjustment) {
+            setProbability(this.probability + adjustment);
+        }
     }
     
     /**
@@ -207,33 +214,75 @@ public class EnhancedFutureScenarioManager {
      * Update scenario probabilities based on recent actions and global state
      */
     public void updateScenarioProbabilities(List<AgentAction> recentActions, PESTELState globalPESTEL, int currentDay) {
-        FutureScenario previousDominant = currentDominantScenario;
+        if (recentActions.isEmpty()) return;
+
+        // Apply a slight decay to all scenarios to allow for shifts
+        scenarios.forEach(s -> s.adjustProbability(-0.001));
         
-        // Update each scenario
+        // Add some initial bias to make tech and green futures more likely from the start
         for (FutureScenario scenario : scenarios) {
-            scenario.updateMomentum(recentActions, globalPESTEL);
-            
-            double newProbability = calculateUpdatedProbability(scenario, recentActions, globalPESTEL);
-            double oldProbability = scenario.getProbability();
-            
-            scenario.setProbability(newProbability);
-            scenarioProbabilities.put(scenario.getName(), newProbability);
-            
-            // Track significant changes
-            if (Math.abs(newProbability - oldProbability) > 0.05) {
-                String trigger = findMainTrigger(scenario, recentActions);
-                ScenarioTransition transition = new ScenarioTransition(
-                    previousDominant.getName(), scenario.getName(), currentDay, trigger, 
-                    newProbability - oldProbability);
-                transitions.add(transition);
+            String name = scenario.getName().toLowerCase();
+            if (name.contains("ai") || name.contains("quantum") || name.contains("green") || name.contains("climate")) {
+                scenario.adjustProbability(0.01); // Give them a head start
             }
         }
-        
-        // Normalize probabilities
+
+        for (AgentAction action : recentActions) {
+            String actionDesc = action.getActionDescription().toLowerCase();
+            
+            for (FutureScenario scenario : scenarios) {
+                double boost = 0.0;
+                String scenarioName = scenario.getName().toLowerCase();
+
+                // --- NARRATIVE INJECTION ---
+                // Major boost for key narrative themes
+                if (isTechScenario(scenarioName) && isTechAction(actionDesc)) {
+                    boost += 0.025; // Significant boost for tech actions
+                } else if (isGreenScenario(scenarioName) && isGreenAction(actionDesc)) {
+                    boost += 0.020; // Significant boost for green actions
+                } else if (scenarioName.contains(getKeyword(actionDesc))) {
+                    boost += 0.005; // Standard boost for other related actions
+                } else {
+                    // Penalize unrelated scenarios slightly when a major theme event occurs
+                    if (isTechAction(actionDesc) || isGreenAction(actionDesc)) {
+                        boost -= 0.002;
+                    }
+                }
+                
+                scenario.adjustProbability(boost);
+            }
+        }
+
         normalizeProbabilities();
         updateDominantScenario();
-        
-        daysSinceLastUpdate = 0;
+    }
+    
+    private boolean isTechScenario(String scenarioName) {
+        return scenarioName.contains("ai") || scenarioName.contains("quantum") || scenarioName.contains("digital");
+    }
+
+    private boolean isTechAction(String actionDesc) {
+        return actionDesc.contains("ai") || actionDesc.contains("quantum") || actionDesc.contains("technology") || actionDesc.contains("digital");
+    }
+
+    private boolean isGreenScenario(String scenarioName) {
+        return scenarioName.contains("green") || scenarioName.contains("climate");
+    }
+
+    private boolean isGreenAction(String actionDesc) {
+        return actionDesc.contains("green") || actionDesc.contains("climate") || actionDesc.contains("sustainable") || actionDesc.contains("renewable");
+    }
+
+    private String getKeyword(String actionDesc) {
+        if (actionDesc.contains("ai") || actionDesc.contains("artificial intelligence")) return "ai";
+        if (actionDesc.contains("quantum")) return "quantum";
+        if (actionDesc.contains("green") || actionDesc.contains("sustainable") || actionDesc.contains("renewable")) return "green";
+        if (actionDesc.contains("digital") || actionDesc.contains("virtual") || actionDesc.contains("online")) return "digital";
+        if (actionDesc.contains("biotech") || actionDesc.contains("medicine") || actionDesc.contains("health")) return "biotech";
+        if (actionDesc.contains("climate") || actionDesc.contains("transition")) return "climate";
+        if (actionDesc.contains("trade") || actionDesc.contains("bloc")) return "multipolar";
+        if (actionDesc.contains("conflict") || actionDesc.contains("crisis")) return "geopolitics";
+        return "";
     }
     
     private double calculateUpdatedProbability(FutureScenario scenario, List<AgentAction> recentActions, PESTELState globalPESTEL) {

@@ -364,7 +364,7 @@ public class AIEnhancedPESTELEngineOllama extends Engine {
     }
     
     @Override
-    protected void runEvent(Event event) {
+    public void runEvent(Event event) {
         currentDay = (int) event.getTime();
         
         Trace.out(Trace.Level.INFO, "\n========== DAY " + currentDay + " ==========\n");
@@ -955,7 +955,7 @@ public class AIEnhancedPESTELEngineOllama extends Engine {
     }
     
     @Override
-    protected void tryCEvents() {
+    public void tryCEvents() {
         // Country union coordination
         if (currentDay % 3 == 0) {
             for (String unionName : countryUnionNames) {
@@ -970,7 +970,7 @@ public class AIEnhancedPESTELEngineOllama extends Engine {
     }
     
     @Override
-    protected void results() {
+    public void results() {
         displayComprehensiveResults();
     }
     
@@ -1111,4 +1111,5 @@ public class AIEnhancedPESTELEngineOllama extends Engine {
     public List<AgentAction> getRecentActions() { return new ArrayList<>(recentActions); }
     public List<CrossAgentInteraction> getCrossAgentInteractions() { return new ArrayList<>(crossAgentInteractions); }
     public boolean isAIEnabled() { return aiEnabled; }
+    public int getSimulationDays() { return simulationDays; }
 }

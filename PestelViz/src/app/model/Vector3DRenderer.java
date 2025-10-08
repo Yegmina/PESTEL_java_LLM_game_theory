@@ -265,6 +265,7 @@ public class Vector3DRenderer {
         // Add interaction hints
         gc.setFill(Color.LIGHTGRAY);
         gc.setFont(javafx.scene.text.Font.font(10));
+        gc.setFill(Color.WHITE);
         gc.fillText("Drag to rotate • Scroll to zoom", 10, canvas.getHeight() - 10);
     }
     

@@ -1,34 +1,35 @@
 package simu.framework;
 
 /**
- * Engine implement three-phase simulator. See <a href="https://www.jstor.org/stable/2584330">Three-Phase Simulator</a>
+ * 
+ * The base class for all simulation models
  *
- * This is a skeleton of a three-phase simulator. You need to implement abstract methods for your
- * purpose.
  */
 public abstract class Engine {
-	private double simulationTime = 0;	// time when the simulation will be stopped
-	private Clock clock;				// to simplify the code (clock.getClock() instead Clock.getInstance().getClock())
-	protected EventList eventList;		// events to be processed are stored here
-
+	
+	private double simulationTime = 0;
+	protected EventList eventList;
+	
+	protected Clock clock;
+	
 	/**
-	 * Service Points are created in simu.model-package's class inheriting the Engine class
+	 * The constructor of the engine
 	 */
-	public Engine() {
-		clock = Clock.getInstance();	// to improve the speed of the simulation
+	public Engine(){
+		clock = Clock.getInstance();
 		eventList = new EventList();
 	}
 
 	/**
-	 * Define how long we will run the simulation
-	 * @param time Ending time of the simulation
+	 * Set the simulation time
+	 * @param t Simulation time
 	 */
-	public void setSimulationTime(double time) {	// define how long we will run the simulation
-		simulationTime = time;
+	public void setSimulationTime(double t) {
+		simulationTime = t;
 	}
-
+	
 	/**
-	 * The starting point of the simulator. We will return when the simulation ends.
+	 * Run the simulation
 	 */
 	public void run(){
 		initialize(); // creating, e.g., the first event
@@ -48,33 +49,22 @@ public abstract class Engine {
 		results();
 	}
 
-	/**
-	 * Execute all B-events (bounded to time) at the current time removing them from the event list.
-	 */
-	private void runBEvents() {
+	private double currentTime(){
+		return eventList.getNextEventTime();
+	}
+	
+	private void runBEvents(){
 		while (eventList.getNextEventTime() == clock.getClock()){
 			runEvent(eventList.remove());
 		}
 	}
 
-	/**
-	 * @return Earliest event time at the event list
-	 */
-	private double currentTime(){
-		return eventList.getNextEventTime();
-	}
-
-	/**
-	 * @return logical value whether we should continue simulation
-	 */
 	private boolean simulate(){
 		return clock.getClock() < simulationTime;
 	}
 
 	/**
-	 * Execute event actions (e.g., removing customer from the queue)
-	 * Defined in simu.model-package's class who is inheriting the Engine class
-	 *
+	 * Execute an event
 	 * @param t The event to be executed
 	 */
 	protected abstract void runEvent(Event t);
@@ -86,15 +76,35 @@ public abstract class Engine {
 	protected abstract void tryCEvents();
 
 	/**
-	 * Set all data structures to initial values
-	 * Defined in simu.model-package's class who is inheriting the Engine class
+	 * Initialize the simulation.
+	 * Create all the static components of the system.
+	 * Create the first event and add it to the event list.
+	 * This method is defined in simu.model-package's class who is inheriting the Engine class
 	 */
 	protected abstract void initialize();
 
 	/**
-	 * Show/analyze measurement parameters collected during the simulation.
-	 * This method is called at the end of the simulation.
+	 * Show the results of the simulation
 	 * Defined in simu.model-package's class who is inheriting the Engine class
 	 */
 	protected abstract void results();
+
+
+	// --- Methods for UI Interaction --- //
+
+	public EventList getEventList() {
+		return eventList;
+	}
+
+	public double getTime() {
+		return clock.getClock();
+	}
+
+	public void runSingleEvent(Event e) {
+	    runEvent(e);
+    }
+
+    public void runCEvents() {
+	    tryCEvents();
+    }
 }
