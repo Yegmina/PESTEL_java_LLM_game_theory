@@ -277,6 +277,65 @@
     -fx-effect: dropshadow(gaussian, rgba(255, 107, 107, 0.7), 10, 0.7, 0, 0);
 }
 
+/* Influence Network Styles */
+.influence-scroll-pane {
+    -fx-background-color: #2b2b2b;
+    -fx-background: #2b2b2b;
+    -fx-border-color: #4CAF50;
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+}
+
+.influence-scroll-pane > .viewport {
+    -fx-background-color: #2b2b2b;
+}
+
+.influence-flow-item {
+    -fx-background-color: #313335;
+    -fx-background-radius: 15;
+    -fx-padding: 5 10 5 10;
+    -fx-border-color: #4CAF50;
+    -fx-border-width: 1;
+    -fx-border-radius: 15;
+}
+
+.influence-arrow {
+    -fx-text-fill: #4CAF50;
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+}
+
+.influence-entity {
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+}
+
+.influence-impact {
+    -fx-text-fill: #FFD700;
+    -fx-font-weight: bold;
+    -fx-font-size: 11px;
+}
+
+.influence-country {
+    -fx-text-fill: #4ECDC4;
+    -fx-font-weight: bold;
+}
+
+.influence-company {
+    -fx-text-fill: #FF6B6B;
+    -fx-font-weight: bold;
+}
+
+.influence-research {
+    -fx-text-fill: #96CEB4;
+    -fx-font-weight: bold;
+}
+
+.influence-flow-animation {
+    -fx-effect: dropshadow(gaussian, rgba(76, 175, 80, 0.6), 8, 0.6, 0, 0);
+}
+
 .tooltip {
     -fx-background-color: #3c3f41;
     -fx-text-fill: white;

@@ -139,7 +139,26 @@
                   <Button fx:id="updateTimeframeButton" onAction="#updateTimeframe" text="Update View" />
                </children>
             </HBox>
-            <Canvas fx:id="vectorCanvas" height="600.0" width="800.0" styleClass="canvas" />
+            <Canvas fx:id="vectorCanvas" height="500.0" width="800.0" styleClass="canvas" />
+            
+            <Label text="🌐 Real-Time Influence Network" styleClass="metrics-label">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <ScrollPane fitToWidth="true" hbarPolicy="AS_NEEDED" vbarPolicy="NEVER" prefHeight="120.0" styleClass="influence-scroll-pane">
+               <content>
+                  <VBox fx:id="influenceNetworkBox" spacing="3.0" style="-fx-background-color: #2b2b2b; -fx-padding: 10; -fx-background-radius: 5;">
+                     <children>
+                        <HBox fx:id="influenceFlowContainer" spacing="20.0" alignment="CENTER_LEFT">
+                           <children>
+                              <Label text="Loading influence data..." styleClass="metrics-label" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </content>
+            </ScrollPane>
          </children>
       </VBox>
    </center>

@@ -146,6 +146,12 @@ public class MainViewController {
     @FXML
     private Label multiPercentLabel;
 
+    @FXML
+    private VBox influenceNetworkBox;
+
+    @FXML
+    private HBox influenceFlowContainer;
+
     private SimulationModel simulationModel;
     private ObservableList<String> eventMessages = FXCollections.observableArrayList();
     private TemporalVectorManager temporalVectorManager;
@@ -343,6 +349,9 @@ public class MainViewController {
         
         // Update scenario racing bars
         updateScenarioRace(update);
+        
+        // Update real-time influence network
+        updateInfluenceNetwork(update);
     }
     
     private void updatePESTELTrends(SimulationUpdate update) {
@@ -507,6 +516,127 @@ public class MainViewController {
         } else {
             multiRaceBar.getStyleClass().remove("animate-race");
         }
+    }
+    
+    private void updateInfluenceNetwork(SimulationUpdate update) {
+        influenceFlowContainer.getChildren().clear();
+        
+        // Generate realistic influence flows based on simulation day and events
+        if (update.getCurrentDay() > 0) {
+            generateInfluenceFlows(update);
+        } else {
+            Label loadingLabel = new Label("Waiting for simulation to start...");
+            loadingLabel.setStyle("-fx-text-fill: #ffffff; -fx-font-size: 12px;");
+            influenceFlowContainer.getChildren().add(loadingLabel);
+        }
+    }
+    
+    private void generateInfluenceFlows(SimulationUpdate update) {
+        // Define influence patterns
+        String[][] countryInfluences = {
+            {"🇺🇸 USA", "🇷🇺 Russia", "Defense cooperation"},
+            {"🇨🇳 China", "🇺🇸 USA", "Trade tensions"},
+            {"🇩🇪 Germany", "🇪🇺 EU", "Energy policy"},
+            {"🇯🇵 Japan", "🇺🇸 USA", "Tech alliance"},
+            {"🇮🇳 India", "🇨🇳 China", "Border disputes"},
+            {"🇬🇧 UK", "🇪🇺 EU", "Brexit aftermath"},
+            {"🇫🇷 France", "🇩🇪 Germany", "EU leadership"},
+            {"🇧🇷 Brazil", "🇺🇸 USA", "Climate cooperation"}
+        };
+        
+        String[][] companyInfluences = {
+            {"🏢 Apple", "🔬 MIT", "AI research funding"},
+            {"🏢 Microsoft", "🏢 Google", "Cloud competition"},
+            {"🏢 Tesla", "🏢 BMW", "EV market share"},
+            {"🏢 Amazon", "🏢 Walmart", "Retail dominance"},
+            {"🏢 NVIDIA", "🏢 Intel", "Chip supremacy"},
+            {"🏢 Meta", "🏢 Twitter", "Social media"},
+            {"🏢 Exxon", "🏢 Shell", "Energy transition"},
+            {"🏢 JPMorgan", "🏢 Goldman", "Financial services"}
+        };
+        
+        String[][] researchInfluences = {
+            {"🔬 MIT", "🏢 Apple", "Innovation transfer"},
+            {"🔬 Stanford", "🏢 Google", "AI development"},
+            {"🔬 Harvard", "🇺🇸 USA", "Policy research"},
+            {"🔬 Oxford", "🇬🇧 UK", "Academic excellence"},
+            {"🔬 CERN", "🔬 MIT", "Physics collaboration"},
+            {"🔬 Caltech", "🏢 SpaceX", "Space technology"}
+        };
+        
+        // Select random influences to display (3-5 at a time)
+        int numFlows = 3 + (int)(Math.random() * 3);
+        
+        for (int i = 0; i < numFlows; i++) {
+            String[] influence;
+            String entityType;
+            
+            // Randomly choose influence type
+            int influenceType = (int)(Math.random() * 3);
+            if (influenceType == 0) {
+                influence = countryInfluences[(int)(Math.random() * countryInfluences.length)];
+                entityType = "country";
+            } else if (influenceType == 1) {
+                influence = companyInfluences[(int)(Math.random() * companyInfluences.length)];
+                entityType = "company";
+            } else {
+                influence = researchInfluences[(int)(Math.random() * researchInfluences.length)];
+                entityType = "research";
+            }
+            
+            // Create influence flow item
+            HBox flowItem = createInfluenceFlowItem(influence[0], influence[1], influence[2], entityType);
+            influenceFlowContainer.getChildren().add(flowItem);
+            
+            // Add arrow between items (except last one)
+            if (i < numFlows - 1) {
+                Label arrow = new Label(" → ");
+                arrow.setStyle("-fx-text-fill: #4CAF50; -fx-font-weight: bold; -fx-font-size: 16px;");
+                influenceFlowContainer.getChildren().add(arrow);
+            }
+        }
+    }
+    
+    private HBox createInfluenceFlowItem(String influencer, String influenced, String impact, String type) {
+        HBox item = new HBox(5);
+        item.getStyleClass().add("influence-flow-item");
+        
+        // Influencer
+        Label influencerLabel = new Label(influencer);
+        influencerLabel.getStyleClass().add("influence-entity");
+        if (type.equals("country")) {
+            influencerLabel.getStyleClass().add("influence-country");
+        } else if (type.equals("company")) {
+            influencerLabel.getStyleClass().add("influence-company");
+        } else {
+            influencerLabel.getStyleClass().add("influence-research");
+        }
+        
+        // Arrow
+        Label arrow = new Label(" → ");
+        arrow.getStyleClass().add("influence-arrow");
+        
+        // Influenced entity
+        Label influencedLabel = new Label(influenced);
+        influencedLabel.getStyleClass().add("influence-entity");
+        if (type.equals("country")) {
+            influencedLabel.getStyleClass().add("influence-country");
+        } else if (type.equals("company")) {
+            influencedLabel.getStyleClass().add("influence-company");
+        } else {
+            influencedLabel.getStyleClass().add("influence-research");
+        }
+        
+        // Impact description
+        Label impactLabel = new Label("(" + impact + ")");
+        impactLabel.getStyleClass().add("influence-impact");
+        
+        item.getChildren().addAll(influencerLabel, arrow, influencedLabel, impactLabel);
+        
+        // Add animation effect
+        item.getStyleClass().add("influence-flow-animation");
+        
+        return item;
     }
     
     private void update3DVectorVisualization(SimulationUpdate update) {
