@@ -292,11 +292,12 @@
 
 .influence-flow-item {
     -fx-background-color: #313335;
-    -fx-background-radius: 15;
-    -fx-padding: 5 10 5 10;
+    -fx-background-radius: 10;
+    -fx-padding: 3 8 3 8;
     -fx-border-color: #4CAF50;
     -fx-border-width: 1;
-    -fx-border-radius: 15;
+    -fx-border-radius: 10;
+    -fx-spacing: 3;
 }
 
 .influence-arrow {
@@ -308,13 +309,13 @@
 .influence-entity {
     -fx-text-fill: #ffffff;
     -fx-font-weight: bold;
-    -fx-font-size: 12px;
+    -fx-font-size: 10px;
 }
 
 .influence-impact {
     -fx-text-fill: #FFD700;
     -fx-font-weight: bold;
-    -fx-font-size: 11px;
+    -fx-font-size: 9px;
 }
 
 .influence-country {

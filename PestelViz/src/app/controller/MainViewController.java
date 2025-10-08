@@ -534,38 +534,38 @@ public class MainViewController {
     private void generateInfluenceFlows(SimulationUpdate update) {
         // Define influence patterns
         String[][] countryInfluences = {
-            {"🇺🇸 USA", "🇷🇺 Russia", "Defense cooperation"},
-            {"🇨🇳 China", "🇺🇸 USA", "Trade tensions"},
-            {"🇩🇪 Germany", "🇪🇺 EU", "Energy policy"},
-            {"🇯🇵 Japan", "🇺🇸 USA", "Tech alliance"},
-            {"🇮🇳 India", "🇨🇳 China", "Border disputes"},
-            {"🇬🇧 UK", "🇪🇺 EU", "Brexit aftermath"},
-            {"🇫🇷 France", "🇩🇪 Germany", "EU leadership"},
-            {"🇧🇷 Brazil", "🇺🇸 USA", "Climate cooperation"}
+            {"🇺🇸 USA", "🇷🇺 Russia", "Defense"},
+            {"🇨🇳 China", "🇺🇸 USA", "Trade"},
+            {"🇩🇪 Germany", "🇪🇺 EU", "Energy"},
+            {"🇯🇵 Japan", "🇺🇸 USA", "Tech"},
+            {"🇮🇳 India", "🇨🇳 China", "Border"},
+            {"🇬🇧 UK", "🇪🇺 EU", "Brexit"},
+            {"🇫🇷 France", "🇩🇪 Germany", "EU Lead"},
+            {"🇧🇷 Brazil", "🇺🇸 USA", "Climate"}
         };
         
         String[][] companyInfluences = {
-            {"🏢 Apple", "🔬 MIT", "AI research funding"},
-            {"🏢 Microsoft", "🏢 Google", "Cloud competition"},
-            {"🏢 Tesla", "🏢 BMW", "EV market share"},
-            {"🏢 Amazon", "🏢 Walmart", "Retail dominance"},
-            {"🏢 NVIDIA", "🏢 Intel", "Chip supremacy"},
-            {"🏢 Meta", "🏢 Twitter", "Social media"},
-            {"🏢 Exxon", "🏢 Shell", "Energy transition"},
-            {"🏢 JPMorgan", "🏢 Goldman", "Financial services"}
+            {"🏢 Apple", "🔬 MIT", "AI Research"},
+            {"🏢 Microsoft", "🏢 Google", "Cloud"},
+            {"🏢 Tesla", "🏢 BMW", "EV Market"},
+            {"🏢 Amazon", "🏢 Walmart", "Retail"},
+            {"🏢 NVIDIA", "🏢 Intel", "Chips"},
+            {"🏢 Meta", "🏢 Twitter", "Social"},
+            {"🏢 Exxon", "🏢 Shell", "Energy"},
+            {"🏢 JPMorgan", "🏢 Goldman", "Finance"}
         };
         
         String[][] researchInfluences = {
-            {"🔬 MIT", "🏢 Apple", "Innovation transfer"},
-            {"🔬 Stanford", "🏢 Google", "AI development"},
-            {"🔬 Harvard", "🇺🇸 USA", "Policy research"},
-            {"🔬 Oxford", "🇬🇧 UK", "Academic excellence"},
-            {"🔬 CERN", "🔬 MIT", "Physics collaboration"},
-            {"🔬 Caltech", "🏢 SpaceX", "Space technology"}
+            {"🔬 MIT", "🏢 Apple", "Innovation"},
+            {"🔬 Stanford", "🏢 Google", "AI Dev"},
+            {"🔬 Harvard", "🇺🇸 USA", "Policy"},
+            {"🔬 Oxford", "🇬🇧 UK", "Academic"},
+            {"🔬 CERN", "🔬 MIT", "Physics"},
+            {"🔬 Caltech", "🏢 SpaceX", "Space"}
         };
         
-        // Select random influences to display (3-5 at a time)
-        int numFlows = 3 + (int)(Math.random() * 3);
+        // Select random influences to display (2-3 at a time for better visibility)
+        int numFlows = 2 + (int)(Math.random() * 2);
         
         for (int i = 0; i < numFlows; i++) {
             String[] influence;
