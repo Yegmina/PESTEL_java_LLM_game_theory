@@ -188,10 +188,14 @@ public class MainViewController {
                 Label factorLabel = new Label(factorEntry.getKey() + ": " + factorEntry.getValue());
                 factorLabel.setWrapText(true);
                 factorLabel.getStyleClass().add("pestel-factor-label");
+                // Explicitly set text color to ensure visibility
+                factorLabel.setStyle("-fx-text-fill: #ffffff; -fx-font-size: 14px;");
                 categoryContent.getChildren().add(factorLabel);
             }
             TitledPane titledPane = new TitledPane(categoryEntry.getKey().toUpperCase(), categoryContent);
             titledPane.setAnimated(false); // Optional: for performance
+            // Explicitly style the titled pane header for maximum visibility
+            titledPane.setStyle("-fx-text-fill: #ffffff; -fx-font-size: 16px; -fx-font-weight: bold;");
             pestelStateBox.getChildren().add(titledPane);
         }
         
