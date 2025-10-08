@@ -26,14 +26,16 @@
 }
 
 .pestel-factor-label {
-    -fx-text-fill: #e0e0e0;
+    -fx-text-fill: #ffffff;
     -fx-padding: 0 0 0 10; /* Add left padding */
-    -fx-font-size: 13px;
+    -fx-font-size: 14px;
+    -fx-font-weight: normal;
 }
 
 .pestel-category-label {
-    -fx-text-fill: #87CEEB; /* Bright Sky Blue for category titles */
+    -fx-text-fill: #ffffff; /* Pure white for maximum visibility */
     -fx-font-weight: bold;
+    -fx-font-size: 16px;
     -fx-padding: 5 0 5 0;
 }
 
@@ -43,7 +45,15 @@
 }
 
 .pestel-scroll-pane > .viewport {
-    -fx-background-color: transparent;
+    -fx-background-color: #313335;
+}
+
+.pestel-scroll-pane .scroll-bar {
+    -fx-background-color: #2b2b2b;
+}
+
+.pestel-scroll-pane .scroll-bar .thumb {
+    -fx-background-color: #4CAF50;
 }
 
 
