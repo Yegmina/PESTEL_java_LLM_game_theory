@@ -17,6 +17,11 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
+import javafx.scene.shape.Circle;
+import javafx.animation.Timeline;
+import javafx.animation.KeyFrame;
+import javafx.util.Duration;
 import simu.model.EnhancedFutureScenarioManager;
 
 import java.util.Map;
@@ -104,6 +109,42 @@ public class MainViewController {
 
     @FXML
     private Label legalTrendLabel;
+
+    @FXML
+    private VBox entityActivityDots;
+
+    @FXML
+    private Label decisionPulseLabel;
+
+    @FXML
+    private ProgressBar activityProgressBar;
+
+    @FXML
+    private VBox scenarioRacePanel;
+
+    @FXML
+    private ProgressBar aiSupremacyRaceBar;
+
+    @FXML
+    private ProgressBar biotechRaceBar;
+
+    @FXML
+    private ProgressBar greenRaceBar;
+
+    @FXML
+    private ProgressBar multiRaceBar;
+
+    @FXML
+    private Label aiSupremacyPercentLabel;
+
+    @FXML
+    private Label biotechPercentLabel;
+
+    @FXML
+    private Label greenPercentLabel;
+
+    @FXML
+    private Label multiPercentLabel;
 
     private SimulationModel simulationModel;
     private ObservableList<String> eventMessages = FXCollections.observableArrayList();
@@ -296,6 +337,12 @@ public class MainViewController {
         
         // Update PESTEL factor trends with animated progress bars
         updatePESTELTrends(update);
+        
+        // Update cool animations and effects
+        updateCoolAnimations(update);
+        
+        // Update scenario racing bars
+        updateScenarioRace(update);
     }
     
     private void updatePESTELTrends(SimulationUpdate update) {
@@ -343,6 +390,122 @@ public class MainViewController {
         } else {
             trendLabel.setText("→");
             trendLabel.setStyle("-fx-text-fill: #FFC107; -fx-font-weight: bold;");
+        }
+    }
+    
+    private void updateCoolAnimations(SimulationUpdate update) {
+        // Update entity activity dots with pulsing effects
+        updateEntityActivityDots(update);
+        
+        // Update decision pulse animation
+        updateDecisionPulse(update);
+        
+        // Update activity progress bar
+        double activityLevel = Math.min(update.getCurrentDay() / 30.0, 1.0) + (Math.random() * 0.3);
+        activityProgressBar.setProgress(activityLevel);
+        
+        // Add pulsing effect to activity bar when high
+        if (activityLevel > 0.7) {
+            activityProgressBar.getStyleClass().add("animate-pulse");
+        } else {
+            activityProgressBar.getStyleClass().remove("animate-pulse");
+        }
+    }
+    
+    private void updateEntityActivityDots(SimulationUpdate update) {
+        entityActivityDots.getChildren().clear();
+        
+        // Create 8 activity dots representing different entity groups
+        for (int i = 0; i < 8; i++) {
+            Circle dot = new Circle(3);
+            
+            // Random activity levels for each dot
+            double activity = Math.random();
+            if (activity > 0.8) {
+                dot.getStyleClass().add("activity-dot");
+                dot.getStyleClass().add("high");
+            } else if (activity > 0.5) {
+                dot.getStyleClass().add("activity-dot");
+                dot.getStyleClass().add("medium");
+            } else {
+                dot.getStyleClass().add("activity-dot");
+                dot.getStyleClass().add("inactive");
+            }
+            
+            entityActivityDots.getChildren().add(dot);
+        }
+    }
+    
+    private void updateDecisionPulse(SimulationUpdate update) {
+        // Make decision pulse more active when decisions are being made
+        if (update.getCurrentDay() > 0 && eventMessages.size() % 5 == 0) {
+            decisionPulseLabel.getStyleClass().add("animate-pulse");
+            
+            // Remove pulse effect after animation
+            Timeline timeline = new Timeline(new KeyFrame(Duration.millis(500), e -> {
+                decisionPulseLabel.getStyleClass().remove("animate-pulse");
+            }));
+            timeline.play();
+        }
+    }
+    
+    private void updateScenarioRace(SimulationUpdate update) {
+        // Find scenario probabilities for racing bars
+        double aiSupremacyProb = 0.0;
+        double biotechProb = 0.0;
+        double greenProb = 0.0;
+        double multiProb = 0.0;
+        
+        for (var scenario : update.getFutureScenarios()) {
+            String name = scenario.getName().toLowerCase();
+            double prob = scenario.getProbability();
+            
+            if (name.contains("ai") || name.contains("supremacy")) {
+                aiSupremacyProb = Math.max(aiSupremacyProb, prob);
+            } else if (name.contains("biotech") || name.contains("renaissance")) {
+                biotechProb = Math.max(biotechProb, prob);
+            } else if (name.contains("green") || name.contains("climate")) {
+                greenProb = Math.max(greenProb, prob);
+            } else if (name.contains("multipolar") || name.contains("regional")) {
+                multiProb = Math.max(multiProb, prob);
+            }
+        }
+        
+        // Update racing bars with smooth animations
+        aiSupremacyRaceBar.setProgress(aiSupremacyProb);
+        biotechRaceBar.setProgress(biotechProb);
+        greenRaceBar.setProgress(greenProb);
+        multiRaceBar.setProgress(multiProb);
+        
+        // Update percentage labels
+        aiSupremacyPercentLabel.setText(String.format("%.1f%%", aiSupremacyProb * 100));
+        biotechPercentLabel.setText(String.format("%.1f%%", biotechProb * 100));
+        greenPercentLabel.setText(String.format("%.1f%%", greenProb * 100));
+        multiPercentLabel.setText(String.format("%.1f%%", multiProb * 100));
+        
+        // Add racing effects to leading scenarios
+        if (aiSupremacyProb > 0.3) {
+            aiSupremacyRaceBar.getStyleClass().add("animate-race");
+        } else {
+            aiSupremacyRaceBar.getStyleClass().remove("animate-race");
+        }
+        
+        if (biotechProb > 0.3) {
+            biotechRaceBar.getStyleClass().add("animate-race");
+        } else {
+            biotechRaceBar.getStyleClass().remove("animate-race");
+        }
+        
+        if (greenProb > 0.3) {
+            greenRaceBar.getStyleClass().add("animate-race");
+        } else {
+            greenRaceBar.getStyleClass().remove("animate-race");
+        }
+        
+        if (multiProb > 0.3) {
+            multiRaceBar.getStyleClass().add("animate-race");
+        } else {
+            multiRaceBar.getStyleClass().remove("animate-race");
         }
     }
     

@@ -56,24 +56,65 @@
                      <children>
                         <Label text="🏢 Entities:" styleClass="metrics-label" />
                         <Label fx:id="entityCountLabel" text="0" styleClass="metrics-value" />
+                        <VBox fx:id="entityActivityDots" spacing="2.0" alignment="CENTER_LEFT" />
                      </children>
                   </HBox>
                   <HBox spacing="10.0">
                      <children>
                         <Label text="⚡ Decisions:" styleClass="metrics-label" />
                         <Label fx:id="decisionCountLabel" text="0" styleClass="metrics-value" />
+                        <Label fx:id="decisionPulseLabel" text="⚡" styleClass="pulse-effect" />
                      </children>
                   </HBox>
                   <HBox spacing="10.0">
                      <children>
                         <Label text="📈 Active Events:" styleClass="metrics-label" />
                         <Label fx:id="activeEventsLabel" text="0" styleClass="metrics-value" />
+                        <ProgressBar fx:id="activityProgressBar" prefWidth="60.0" progress="0.0" />
                      </children>
                   </HBox>
                   <HBox spacing="10.0">
                      <children>
                         <Label text="🎯 Top Scenario:" styleClass="metrics-label" />
                         <Label fx:id="topScenarioLabel" text="None" styleClass="metrics-value" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            
+            <Label text="🏁 Scenario Race" styleClass="metrics-label">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <VBox fx:id="scenarioRacePanel" spacing="3.0" style="-fx-background-color: #2b2b2b; -fx-padding: 8; -fx-background-radius: 5;">
+               <children>
+                  <HBox spacing="5.0">
+                     <children>
+                        <Label text="🤖 AI Supremacy" styleClass="metrics-label" prefWidth="80.0" />
+                        <ProgressBar fx:id="aiSupremacyRaceBar" prefWidth="100.0" progress="0.0" />
+                        <Label fx:id="aiSupremacyPercentLabel" text="0%" styleClass="metrics-value" />
+                     </children>
+                  </HBox>
+                  <HBox spacing="5.0">
+                     <children>
+                        <Label text="🧬 Biotech" styleClass="metrics-label" prefWidth="80.0" />
+                        <ProgressBar fx:id="biotechRaceBar" prefWidth="100.0" progress="0.0" />
+                        <Label fx:id="biotechPercentLabel" text="0%" styleClass="metrics-value" />
+                     </children>
+                  </HBox>
+                  <HBox spacing="5.0">
+                     <children>
+                        <Label text="🌱 Green" styleClass="metrics-label" prefWidth="80.0" />
+                        <ProgressBar fx:id="greenRaceBar" prefWidth="100.0" progress="0.0" />
+                        <Label fx:id="greenPercentLabel" text="0%" styleClass="metrics-value" />
+                     </children>
+                  </HBox>
+                  <HBox spacing="5.0">
+                     <children>
+                        <Label text="🌍 Multi" styleClass="metrics-label" prefWidth="80.0" />
+                        <ProgressBar fx:id="multiRaceBar" prefWidth="100.0" progress="0.0" />
+                        <Label fx:id="multiPercentLabel" text="0%" styleClass="metrics-value" />
                      </children>
                   </HBox>
                </children>
