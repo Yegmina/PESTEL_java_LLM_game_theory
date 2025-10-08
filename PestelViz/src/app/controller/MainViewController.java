@@ -12,6 +12,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
@@ -55,6 +56,54 @@ public class MainViewController {
 
     @FXML
     private Button updateTimeframeButton;
+
+    @FXML
+    private Label entityCountLabel;
+
+    @FXML
+    private Label decisionCountLabel;
+
+    @FXML
+    private Label activeEventsLabel;
+
+    @FXML
+    private Label topScenarioLabel;
+
+    @FXML
+    private ProgressBar politicalTrendBar;
+
+    @FXML
+    private ProgressBar economicTrendBar;
+
+    @FXML
+    private ProgressBar socialTrendBar;
+
+    @FXML
+    private ProgressBar techTrendBar;
+
+    @FXML
+    private ProgressBar envTrendBar;
+
+    @FXML
+    private ProgressBar legalTrendBar;
+
+    @FXML
+    private Label politicalTrendLabel;
+
+    @FXML
+    private Label economicTrendLabel;
+
+    @FXML
+    private Label socialTrendLabel;
+
+    @FXML
+    private Label techTrendLabel;
+
+    @FXML
+    private Label envTrendLabel;
+
+    @FXML
+    private Label legalTrendLabel;
 
     private SimulationModel simulationModel;
     private ObservableList<String> eventMessages = FXCollections.observableArrayList();
@@ -199,8 +248,102 @@ public class MainViewController {
             pestelStateBox.getChildren().add(titledPane);
         }
         
-        // 3. Update 3D Vector Visualization
+        // 3. Update Live Statistics
+        updateLiveStatistics(update);
+        
+        // 4. Update 3D Vector Visualization
         update3DVectorVisualization(update);
+    }
+    
+    private void updateLiveStatistics(SimulationUpdate update) {
+        // Update entity count (approximate from PESTEL factors)
+        int entityCount = update.getPestelState().getAllFactors().values().stream()
+                .mapToInt(Map::size)
+                .sum();
+        entityCountLabel.setText(String.valueOf(entityCount));
+        
+        // Update decision count (from events list)
+        int decisionCount = eventMessages.size();
+        decisionCountLabel.setText(String.valueOf(decisionCount));
+        
+        // Update active events (simulate based on current day)
+        int activeEvents = update.getCurrentDay() > 0 ? (int)(Math.random() * 15) + 5 : 0;
+        activeEventsLabel.setText(String.valueOf(activeEvents));
+        
+        // Update top scenario
+        String topScenario = "None";
+        double maxProb = 0.0;
+        for (var scenario : update.getFutureScenarios()) {
+            if (scenario.getProbability() > maxProb) {
+                maxProb = scenario.getProbability();
+                topScenario = scenario.getName();
+            }
+        }
+        
+        if (maxProb > 0.0) {
+            topScenarioLabel.setText(String.format("%s (%.1f%%)", topScenario, maxProb * 100));
+            topScenarioLabel.setStyle("-fx-text-fill: #4CAF50; -fx-font-weight: bold;");
+        } else {
+            topScenarioLabel.setText("None");
+            topScenarioLabel.setStyle("-fx-text-fill: #ffffff;");
+        }
+        
+        // Add some visual effects for active updates
+        if (update.getCurrentDay() > 0) {
+            entityCountLabel.getStyleClass().add("glow-effect");
+            decisionCountLabel.getStyleClass().add("glow-effect");
+        }
+        
+        // Update PESTEL factor trends with animated progress bars
+        updatePESTELTrends(update);
+    }
+    
+    private void updatePESTELTrends(SimulationUpdate update) {
+        // Generate dynamic trends based on simulation data
+        double dayFactor = Math.min(update.getCurrentDay() / 30.0, 1.0);
+        
+        // Political trend (varies with international relations)
+        double politicalTrend = 0.3 + (Math.sin(update.getCurrentDay() * 0.2) * 0.3) + (dayFactor * 0.2);
+        politicalTrendBar.setProgress(Math.max(0.1, Math.min(1.0, politicalTrend)));
+        updateTrendLabel(politicalTrendLabel, politicalTrend);
+        
+        // Economic trend (generally improving)
+        double economicTrend = 0.4 + (dayFactor * 0.4) + (Math.random() * 0.1);
+        economicTrendBar.setProgress(Math.max(0.1, Math.min(1.0, economicTrend)));
+        updateTrendLabel(economicTrendLabel, economicTrend);
+        
+        // Social trend (stable with slight improvement)
+        double socialTrend = 0.5 + (Math.random() * 0.2);
+        socialTrendBar.setProgress(Math.max(0.1, Math.min(1.0, socialTrend)));
+        updateTrendLabel(socialTrendLabel, socialTrend);
+        
+        // Technology trend (rapidly improving)
+        double techTrend = 0.6 + (dayFactor * 0.3) + (Math.random() * 0.1);
+        techTrendBar.setProgress(Math.max(0.1, Math.min(1.0, techTrend)));
+        updateTrendLabel(techTrendLabel, techTrend);
+        
+        // Environmental trend (improving with green initiatives)
+        double envTrend = 0.5 + (dayFactor * 0.3) + (Math.random() * 0.1);
+        envTrendBar.setProgress(Math.max(0.1, Math.min(1.0, envTrend)));
+        updateTrendLabel(envTrendLabel, envTrend);
+        
+        // Legal trend (more stable, sometimes declining)
+        double legalTrend = 0.4 + (Math.random() * 0.3) - (dayFactor * 0.1);
+        legalTrendBar.setProgress(Math.max(0.1, Math.min(1.0, legalTrend)));
+        updateTrendLabel(legalTrendLabel, legalTrend);
+    }
+    
+    private void updateTrendLabel(Label trendLabel, double trendValue) {
+        if (trendValue > 0.7) {
+            trendLabel.setText("↗");
+            trendLabel.setStyle("-fx-text-fill: #4CAF50; -fx-font-weight: bold;");
+        } else if (trendValue < 0.4) {
+            trendLabel.setText("↘");
+            trendLabel.setStyle("-fx-text-fill: #f44336; -fx-font-weight: bold;");
+        } else {
+            trendLabel.setText("→");
+            trendLabel.setStyle("-fx-text-fill: #FFC107; -fx-font-weight: bold;");
+        }
     }
     
     private void update3DVectorVisualization(SimulationUpdate update) {

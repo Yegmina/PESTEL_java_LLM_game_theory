@@ -8,6 +8,7 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -42,7 +43,41 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <ListView fx:id="eventsListView" prefHeight="400.0" />
+            <ListView fx:id="eventsListView" prefHeight="250.0" />
+            
+            <Label text="📊 Live Statistics" styleClass="metrics-label">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <VBox fx:id="statsPanel" spacing="5.0" style="-fx-background-color: #2b2b2b; -fx-padding: 10; -fx-background-radius: 5;">
+               <children>
+                  <HBox spacing="10.0">
+                     <children>
+                        <Label text="🏢 Entities:" styleClass="metrics-label" />
+                        <Label fx:id="entityCountLabel" text="0" styleClass="metrics-value" />
+                     </children>
+                  </HBox>
+                  <HBox spacing="10.0">
+                     <children>
+                        <Label text="⚡ Decisions:" styleClass="metrics-label" />
+                        <Label fx:id="decisionCountLabel" text="0" styleClass="metrics-value" />
+                     </children>
+                  </HBox>
+                  <HBox spacing="10.0">
+                     <children>
+                        <Label text="📈 Active Events:" styleClass="metrics-label" />
+                        <Label fx:id="activeEventsLabel" text="0" styleClass="metrics-value" />
+                     </children>
+                  </HBox>
+                  <HBox spacing="10.0">
+                     <children>
+                        <Label text="🎯 Top Scenario:" styleClass="metrics-label" />
+                        <Label fx:id="topScenarioLabel" text="None" styleClass="metrics-value" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
          </children>
       </VBox>
    </left>
@@ -75,6 +110,59 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
+            
+            <Label text="📊 Factor Trends" styleClass="metrics-label">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <VBox fx:id="trendsPanel" spacing="3.0" style="-fx-background-color: #2b2b2b; -fx-padding: 8; -fx-background-radius: 5;">
+               <children>
+                  <HBox spacing="10.0">
+                     <children>
+                        <Label text="🌍 Political:" styleClass="metrics-label" />
+                        <ProgressBar fx:id="politicalTrendBar" prefWidth="80.0" progress="0.5" />
+                        <Label fx:id="politicalTrendLabel" text="↗" styleClass="trend-up" />
+                     </children>
+                  </HBox>
+                  <HBox spacing="10.0">
+                     <children>
+                        <Label text="💰 Economic:" styleClass="metrics-label" />
+                        <ProgressBar fx:id="economicTrendBar" prefWidth="80.0" progress="0.7" />
+                        <Label fx:id="economicTrendLabel" text="↗" styleClass="trend-up" />
+                     </children>
+                  </HBox>
+                  <HBox spacing="10.0">
+                     <children>
+                        <Label text="👥 Social:" styleClass="metrics-label" />
+                        <ProgressBar fx:id="socialTrendBar" prefWidth="80.0" progress="0.6" />
+                        <Label fx:id="socialTrendLabel" text="→" styleClass="trend-stable" />
+                     </children>
+                  </HBox>
+                  <HBox spacing="10.0">
+                     <children>
+                        <Label text="🔬 Tech:" styleClass="metrics-label" />
+                        <ProgressBar fx:id="techTrendBar" prefWidth="80.0" progress="0.9" />
+                        <Label fx:id="techTrendLabel" text="↗" styleClass="trend-up" />
+                     </children>
+                  </HBox>
+                  <HBox spacing="10.0">
+                     <children>
+                        <Label text="🌱 Env:" styleClass="metrics-label" />
+                        <ProgressBar fx:id="envTrendBar" prefWidth="80.0" progress="0.8" />
+                        <Label fx:id="envTrendLabel" text="↗" styleClass="trend-up" />
+                     </children>
+                  </HBox>
+                  <HBox spacing="10.0">
+                     <children>
+                        <Label text="⚖️ Legal:" styleClass="metrics-label" />
+                        <ProgressBar fx:id="legalTrendBar" prefWidth="80.0" progress="0.4" />
+                        <Label fx:id="legalTrendLabel" text="↘" styleClass="trend-down" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            
             <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="pestel-scroll-pane">
                <content>
                   <VBox fx:id="pestelStateBox" spacing="5.0" />

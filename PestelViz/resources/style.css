@@ -164,6 +164,53 @@
 .metrics-value {
     -fx-text-fill: #4CAF50;
     -fx-font-weight: bold;
+    -fx-font-size: 13px;
+}
+
+/* Statistics Panel */
+.stats-panel {
+    -fx-background-color: #2b2b2b;
+    -fx-background-radius: 5;
+    -fx-border-color: #4CAF50;
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+    -fx-padding: 10;
+}
+
+/* Animated Progress Bars */
+.progress-bar {
+    -fx-background-color: #313335;
+    -fx-background-radius: 3;
+}
+
+.progress-bar .bar {
+    -fx-background-color: linear-gradient(to right, #4CAF50, #8BC34A);
+    -fx-background-radius: 3;
+}
+
+/* Trend Indicators */
+.trend-up {
+    -fx-text-fill: #4CAF50;
+    -fx-font-weight: bold;
+}
+
+.trend-down {
+    -fx-text-fill: #f44336;
+    -fx-font-weight: bold;
+}
+
+.trend-stable {
+    -fx-text-fill: #FFC107;
+    -fx-font-weight: bold;
+}
+
+/* Glow Effects */
+.glow-effect {
+    -fx-effect: dropshadow(gaussian, rgba(76, 175, 80, 0.5), 10, 0.5, 0, 0);
+}
+
+.pulse-effect {
+    -fx-effect: dropshadow(gaussian, rgba(76, 175, 80, 0.8), 15, 0.8, 0, 0);
 }
 
 .tooltip {
